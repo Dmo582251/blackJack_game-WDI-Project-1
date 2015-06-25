@@ -1,100 +1,80 @@
 console.log("hand.js has loaded");
 
-var myDeck = new Deck();
+/* Hand Object:
+-----------------------------------------*/
+var Hand = function() {
+  this.hand = [];
+  this.value = 0;
+  this.blackjack = false;
+
+  //gets the value of player & dealers hand
+  this.getValue = function() {
+    this.value = 0;
+    for (var i = 0; i < this.hand.length; i++) {
+    	//looks for the value of face cards and gives them the value of ten
+      if (this.hand[i].value === 'K' || this.hand[i].value === 'Q' || this.hand[i].value === 'J') {
+        this.value += 10;
+        //finds all the normal cards and gives them the same value
+      } else if (this.hand[i].value) {
+        this.value += this.hand[i].value;
+        //for ace being 11 or 1
+      } else if (this.hand[i].value === 'A') {
+        if (this.value > 10) {
+          this.value += 1;
+        }
+        this.value += 11;
+      }
+    }
+  };
+  //when player chooses to hit
+  this.hit = function(card) {
+    this.cards.push(card)
+  };
+  //rules for when dealer hits
+  this.dealerHit = function(card) {
+    if (this.value <= 16) {
+      this.hit(card);
+    };
+    //searches for blackjack
+    this.blackJackSearch = function() {
+      if (this.value === 21) {
+        this.blackJack = true;
+      } else {
+        this.blackJack = false;
+      };
+    };
+  };
+};
 
 /* Players Objects:
 ----------------------------------------*/
-var player = {
-	 hand: [], 
-	 handValue: 0,
-	 moneyBank: 500,
-	 betBank: 0,
-	 stay: false,
-	 blackJack: false,
-
-
-	blackJackSearch : function(){
-		if(handValue === 21){
-			blackJack = true;
-		}else{
-			blackJack = false;
-		};
-	},
-
-	//figuring out players hand value
-	handValue : function(){
-		for(var i = 0; i < (this.hand).length; i++){
-			(handValue += (this.hand[i].value));
-		};
-		return;
-	},
-
-	//this should get cards to players hand
-	deal : function(){
-		//this will randomly chose two cards from myDeck
-    var rand = myDeck[Math.floor(Math.random() * myDeck.length)];
-		//put in randomm for pop once figure out shuffle
-		(this.hand.push(myDeck.cards.pop()));
-
-	},
-
-	//COMEBACK to this for amount
-	bet : function(amount){
-		this.betBank += amount
-		this.moneyBank -= amount
-	},
-	
-	hit : function(){
-		//takes a card from deck and gives it to player
-		this.hand.push(myDeck.cards.pop());
-	},
-
-	stay : function(){
-
-	}
+var Player = function() {
+  this.hand = new Hand();
+  this.moneyBank = 500;
+  this.betBank = 0;
+  this.stay = false;
+  
+  //Amount is what user puts in
+  this.bet = function(amount) {
+    this.betBank += amount
+    this.moneyBank -= amount
+  };
 };
 
 
 /* Dealers Objects:
 ----------------------------------------*/
-var dealer = {
-	 hand: [],
-   handValue: 0,
-	 stay: true,
-	 blackJack: false,
+var Dealer = function() {
+  this.deck = new Deck();
+  this.hand = new Hand();
+  this.handValue = 0;
+  this.stay = true;
 
-	blackJackSearch : function(){
-		if(handValue === 21){
-			blackJack = true;
-		};
-	},
+  this.deal = function() {
+    //will use the deck to give random cards to itself and to any players playing using the getrandom card function
+    // and the getcard function of a hand, will deal the approprate amount of cards when doing an inital deal, 
 
-	//finding dealer hand value
-	handValue : function(){
-		for(var i = 0; i < (this.hand).length; i++){
-			(handValue += (this.hand[i].value));
-		};
-		return;
-	},
 
-	deal : function(){
-		//this will randomly chose two cards from myDeck
-    var rand = myDeck[Math.floor(Math.random() * myDeck.length)];
 
-		//!! put random for pop once I randomize
-		this.hand.push(myDeck.cards.pop());
-	},
-
-	hit : function(){
-		if(this.handValue <= 16){
-			this.hand.push(myDeck.pop());
-		};
-	},
-
+  };
 }
-
-
-
-
-
-
