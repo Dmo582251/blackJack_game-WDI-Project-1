@@ -17,14 +17,15 @@ var Deck = function(){
       };
     };
   };
-  
+
   //grabs random cards from the deck
   this.getRandomCard = function(){
     //this will randomly chose two cards from myDeck
     var randomNum = Math.floor(Math.random() * (this.cards.length + 1));
     //takes random card and removes and returns it
     var randomCard = this.cards.splice(randomNum, 1);
-    return randomCard;
+    console.log(randomCard);
+    return randomCard[0];
   },
   this.createDeck();
 };
