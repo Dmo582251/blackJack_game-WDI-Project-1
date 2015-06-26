@@ -20,6 +20,7 @@
 	<!--title-->
 	<h1>Black Jack</h1>
 
+<button id = "startButton"></button>
 	<div id = "table">
 		
 		<!--scoreBoard-->
@@ -40,16 +41,22 @@
 		<button id="deal">
 
 		<button id ='hit'></button>
+
+		<button id="stay"></button>
 		
-			<div class = "dealerCards">
-			<p id ="dealerCard1"></p>
-			<p id ="dealerCard2"></p>
+		<div class = "dealerCards">
+			<img id ="dealerCard1">Dealer Card</img>
+			<img id ="dealerCard2">Dealer Card</img>
 		</div>
 
 		<div class = "playerCards">
-			<p id ="playerCard1"></p>
-			<p id ="playerCard1=2"></p>
+			<div id = "playerCardValues">
+			<p id = "playerTotal"></p>
+			<img id ="playerCard1">
+			<img id ="playerCard2">
 		</div>
+
+		<button id = "reset"></button>
 	
 	</div>
 
