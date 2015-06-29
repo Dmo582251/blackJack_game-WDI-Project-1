@@ -1,7 +1,16 @@
 console.log("app.js has loaded");
 
 $(function(){
+
 	
+	/*Start Button
+	---------------------------------------*/
+	var startButton = $('#startButton')
+		startButton.text("Start Game!")
+		startButton.click(function(){
+			game.startGame();
+		});
+
 	//////////CHIPS/////////////////
 	/*5 CHIP:
 	------------------------------*/
@@ -43,7 +52,7 @@ $(function(){
 
 		//scoreboard
 		var moneyBank = $('#money')
-			moneyBank.text('Moeny Bank: ' + game.player.moneyBank);
+			moneyBank.text('Money Bank: ' + game.player.moneyBank);
 		var bet = $('#bet')
 			bet.text('Bet: ' + game.player.betBank);
 		});
@@ -76,13 +85,14 @@ $(function(){
 			render();
 		});
 
+
 		var render = function  () {
 			//Showing player card values 
 			for(var i = 0; i < game.player.hand.cards.length;i++){
 				var currentPlayerCard = $("#playerCard" + (i + 1));
 				currentPlayerCard.attr("src", game.player.hand.cards[i].image);
 				var playerTotal = $('#playerTotal');
-				playerTotal.text("this is players total:" + game.player.hand.value);
+				playerTotal.text("players total:" + game.player.hand.value);
 			};
 			for(var j = 0; j < game.dealer.hand.cards.length;j++){
 				var currentDealerCard = $("#dealerCard" + (j + 1));
@@ -99,12 +109,12 @@ $(function(){
 		hitButton.click(function(){
 			var card = game.dealer.deal();
 			game.player.hand.hit(card);
-			game.player.hand.getValue()
+			game.player.hand.getValue();
 			var num = game.player.hand.cards.length;
 			var newCardDiv = $('<img>');
 			newCardDiv.attr("src", card.image);
 			newCardDiv.attr('id', "playerCard" + num);
-			$('.playerCards').append(newCardDiv)
+			$(newCardDiv).appendTo('.playerCards');
 
 			
 			gameOver();
@@ -126,10 +136,11 @@ $(function(){
 			var newCardDiv = $('<img>');
 			newCardDiv.attr('src', card.image);
 			newCardDiv.attr('id', "dealerCard" + num);
-			$('.dealerCards').append(newCardDiv)
+			$(newCardDiv).appendTo('.dealerCards');
 			
-			render();
+
 			game.comparingHands();
+			render();
 
 		});
 
@@ -144,11 +155,17 @@ $(function(){
 	/*Reset Button
 	---------------------------------------*/
 	var reset = $('#reset')
-	reset.text("Resest");
+	reset.text("Reset");
 		reset.click(function(){
 			game.startGame();
 		});
 
+	/*Conclusion 
+	---------------------------------------
+	var conclusion = $('#conclusion');
+		
+			conclusion.fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);*/
+	
 
 });
 

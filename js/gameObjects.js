@@ -3,7 +3,7 @@ console.log("game objects has loaded.");
 
 
 
-/*creates Player & Dealer 
+/*Game function 
 ---------------------------------------*/
 var selectedOption;
 
@@ -17,7 +17,7 @@ var game = {
 				this.dealer.hand.hit(this.dealer.deal());
 			}
 			this.player.hand.getValue();
-			console.log("The players total = " + this.player.hand.value);
+			console.log("Players total: " + this.player.hand.value);
 		},
 	 startGame: function(){
 		console.log("Game has started");
@@ -29,11 +29,13 @@ var game = {
 	},
 	comparingHands: function(){
 		if(this.player.hand.value === this.dealer.hand.value){
-			console.log("It's a tie");
+			alert("It's a tie");
 		}else if(this.player.hand.value > this.dealer.hand.value){
-			console.log("this.player wins!");
-		}else if(this.player.hand.value < this.dealer.hand.value){
-				console.log("dealer wins!");
+			alert("this.player wins!");
+		}else if((this.player.hand.value < this.dealer.hand.value) && (this.dealer.hand.value <= 21)){
+				alert("dealer wins!");
+		}else if((this.player.hand.value < this.dealer.hand.value) && (this.dealer.hand.value > 21)){
+			alert("player wins!")
 		}
 	},
 	checkForBust: function(){
@@ -43,15 +45,12 @@ var game = {
 			checkForBust === true;
 
 			//CHANGE THIS WITH SOMETHING ELSE
-			alert("FUCK YOU ITS OVER")
-		};
-	},	
+			alert("You lost!!");
+		}	
+	}
 }
 	
 
-
-/*Where the magic happens
----------------------------------------*/
 
 
 

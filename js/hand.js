@@ -64,8 +64,7 @@ var Hand = function() {
 
   //rules for when dealer hits
   this.dealerHit = function(card) {
-    if (this.value <= 16) {
-      
+    if (this.value <= 16){
       this.deal();
       console.log("dealer has to hit");
     }else{
@@ -128,5 +127,7 @@ var Dealer = function() {
     return this.deck.getRandomCard();
 
   };
+
+  
 
 };

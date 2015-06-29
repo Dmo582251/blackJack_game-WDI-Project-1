@@ -3,9 +3,8 @@
 <head>
 	<title>Project Number 1: Black Jack</title>
 
-	<!--Style Sheets
+	<!--Style Sheets-->
 	<link rel="stylesheet" href="css/style.css">
--->
 
 	<!--Script Files-->
 	<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
@@ -19,24 +18,27 @@
 <body>
 	<!--title-->
 	<h1>Black Jack</h1>
+	<h2>WDI SkyWalker</h2>
 
 <button id = "startButton"></button>
 	<div id = "table">
-		
+			
+		<div class = "card"></div>
+
 		<!--scoreBoard-->
 		<div id = "scoreBoard">
 			<ul>
 				<li id="money"> Money Bank: </li>
-				<li id="bet"> Bet: ""</li> 
+				<li id="bet"> Bet: </li> 
 			</ul>
 		</div>
 
-		<div class = "chips"> 
-			<button id ="chip5" value = "5"/>
-			<button id ="chip10" value = "10"/>
-			<button id ="chip50" value = "50"/>
-			<button id ="chip100" value = "100"/>
+		<div class = "dealerCards">
+			<img id ="dealerCard1"></img>
+			<img id ="dealerCard2"></img>
 		</div>
+		
+		<h1 id = "conclusion"></h1>
 
 		<button id="deal">
 
@@ -44,19 +46,23 @@
 
 		<button id="stay"></button>
 		
-		<div class = "dealerCards">
-			<img id ="dealerCard1">Dealer Card</img>
-			<img id ="dealerCard2">Dealer Card</img>
-		</div>
 
 		<div class = "playerCards">
-			<div id = "playerCardValues">
 			<p id = "playerTotal"></p>
 			<img id ="playerCard1">
 			<img id ="playerCard2">
 		</div>
 
+
+			<div class = "chips"> 
+			<button id ="chip5" value = "5"/>
+			<button id ="chip10" value = "10"/>
+			<button id ="chip50" value = "50"/>
+			<button id ="chip100" value = "100"/>
+		</div>
+
 		<button id = "reset"></button>
+
 	
 	</div>
 
