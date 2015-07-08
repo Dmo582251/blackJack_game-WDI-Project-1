@@ -30,7 +30,7 @@ var Hand = function() {
   this.hit = function(card) {
     this.cards.push(card);
     console.log("a card has been pushed");
-    this.findHitValue();
+    this.findHitValue(card);
     console.log("got the value");
 
 
@@ -39,19 +39,21 @@ var Hand = function() {
   //MIGHT NOT NEED THIS
   this.findHitValue = function(card){
     console.log("find hit value");
-
-    if(this.cards.value === 'K' || this.cards.value === 'Q' || this.cards.value === 'J'){
-        this.value += 10;
-        //finds all the normal cards and gives them the same value
-      } else if (this.cards.value === 'A') {
-        if (this.value > 10) {
-          this.value += 1;
-        }
-        this.value += 11;
-        //for ace being 11 or 1    
-      } else if (this.cards.value) {
-        this.value += this.cards.value;
-      };
+      for (var i = 0; i < this.cards.length; i++) {
+        //looks for the value of face cards and gives them the value of ten
+        if(this.cards[i].value === 'K' || this.cards[i].value === 'Q' || this.cards[i].value === 'J'){
+          this.value += 10;
+          //finds all the normal cards and gives them the same value
+        } else if (this.cards[i].value === 'A') {
+          if (this.value > 10) {
+            this.value += 1;
+          }
+          //for ace being 11 or 1
+          this.value += 11;
+        } else if (this.cards[i].value) {
+          this.value += this.cards[i].value;
+        } 
+      }
   };   
 
    this.deal = function(){
@@ -63,7 +65,8 @@ var Hand = function() {
   }; 
 
   //rules for when dealer hits
-  this.dealerHit = function(card) {
+  this.dealerHit = function() {
+    debugger;
     if (this.value <= 16){
       this.deal();
       console.log("dealer has to hit");
@@ -125,6 +128,7 @@ var Dealer = function() {
     
     console.log("cards have been added to dealer hands");
     return this.deck.getRandomCard();
+    //this.hand.getValue();
 
   };
 

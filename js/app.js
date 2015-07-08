@@ -9,6 +9,7 @@ $(function(){
 		startButton.text("Start Game!")
 		startButton.click(function(){
 			game.startGame();
+			$('#table').removeClass("hidden");
 		});
 
 	//////////CHIPS/////////////////
@@ -125,24 +126,26 @@ $(function(){
 
 	/*Stay Button
 	---------------------------------------*/
-	var stayButton = $('#stay')
-		stayButton.text("Stay")
-		stayButton.click(function(){
-			var card = game.dealer.deal();
-			game.dealer.hand.dealerHit(card);
-			game.dealer.hand.getValue();
+	var stayButton = $('#stay');
+	
+	stayButton.text("Stay");
 
-			var num = game.dealer.hand.cards.length;
-			var newCardDiv = $('<img>');
-			newCardDiv.attr('src', card.image);
-			newCardDiv.attr('id', "dealerCard" + num);
-			$(newCardDiv).appendTo('.dealerCards');
-			
+	stayButton.click(function(){
+		var card = game.dealer.deal();
+		game.dealer.hand.getValue();
+		game.dealer.hand.dealerHit(card);
 
-			game.comparingHands();
-			render();
+		var num = game.dealer.hand.cards.length;
+		var newCardDiv = $('<img>');
+		newCardDiv.attr('src', card.image);
+		newCardDiv.attr('id', "dealerCard" + num);
+		$(newCardDiv).appendTo('.dealerCards');
+		
 
-		});
+		game.comparingHands();
+		render();
+
+	});
 
 		/*Checking for Game over
 	---------------------------------------*/
@@ -157,7 +160,7 @@ $(function(){
 	var reset = $('#reset')
 	reset.text("Reset");
 		reset.click(function(){
-			game.startGame();
+			location.reload();
 		});
 
 	/*Conclusion 
